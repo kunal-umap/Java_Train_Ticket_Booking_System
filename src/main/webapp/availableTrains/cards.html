@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+    <header>
+        <button class="back-button" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <i class="fas fa-train temp-icon"></i>
+        <div class="header-title">E Yatra: Train Ticket System</div>
+        <i class="fas fa-user-circle profile-icon"></i>
+    </header>
+
+    <main id="cardContainer">
+        <!-- Cards will be dynamically inserted here -->
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardContainer = document.getElementById('cardContainer');
+            const trainNames = ["Rajdhani Express", "Shatabdi Express", "Duronto Express", "Garib Rath", "Jan Shatabdi", "Sampark Kranti", "Humsafar Express", "Tejas Express", "Vande Bharat"];
+            for (let i = 0; i < 9; i++) {
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                const cardContent = document.createElement('div');
+                cardContent.classList.add("card-content");
+
+                const title = document.createElement('div');
+                title.classList.add('card-title');
+                title.textContent = trainNames[i];
+
+                const trainNumber = document.createElement('div');
+                trainNumber.classList.add('card-details');
+                trainNumber.textContent = 'Train No: ' + Math.floor(100000 + Math.random() * 900000);
+
+                const departureTime = document.createElement('div');
+                departureTime.classList.add('card-details');
+                departureTime.textContent = 'Departure: ' + getRandomTime();
+
+                const arrivalTime = document.createElement('div');
+                arrivalTime.classList.add('card-details');
+                arrivalTime.textContent = 'Arrival: ' + getRandomTime();
+
+                const bookButton = document.createElement('button');
+                bookButton.textContent = 'Book Ticket';
+                bookButton.classList.add('book-ticket-button');
+
+                // Add click event
+                bookButton.addEventListener('click', function () {
+                	window.location.href = '../bookedTickets/tickets.html';
+                    alert('Ticket booked successfully!');
+                    // You can replace this with your actual booking logic
+                });
+
+ 
+                cardContent.appendChild(title);
+                cardContent.appendChild(trainNumber);
+                cardContent.appendChild(departureTime);
+                cardContent.appendChild(arrivalTime);
+                card.appendChild(cardContent);
+                card.appendChild(bookButton);
+                cardContainer.appendChild(card);
+            }
+        });
+
+        function getRandomTime() {
+            const hours = Math.floor(Math.random() * 24).toString().padStart(2, '0');
+            const minutes = Math.floor(Math.random() * 60).toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+        }
+    </script>
+</body>
+</html>

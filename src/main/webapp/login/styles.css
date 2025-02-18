@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --primaryColor: rgb(119, 144, 255);
+    --black: #121212;
+    --white: #FFFFFF;
+    --gray: #1E1E1E;
+    --shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--black);
+    background-image: url('../Assets/homeVande.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    filter: brightness(1.2);
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+.container {
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    width: 360px;
+    background-color: var(--gray);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: var(--primaryColor);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--primaryColor);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: var(--black);
+    color: var(--white);
+}
+
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--primaryColor);
+    color: var(--black);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.toggle-btn {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+
+.form-section {
+    display: none;
+}
+
+.form-section.active {
+    display: block;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--primaryColor);
+    font-size: 14px;
+}
+ 
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

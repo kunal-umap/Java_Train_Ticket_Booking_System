@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View Booked Tickets</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgba(255, 102, 51, 0.05);
+            color: #333;
+        }
+
+        header {
+            background-color: #FF6633;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .header-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .profile-icon {
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        main {
+            padding: 20px;
+            margin-bottom: 100px;
+        }
+
+        .ticket-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .ticket-card h3 {
+            font-size: 1.3em;
+            color: #FF6633;
+        }
+
+        .ticket-details {
+            margin: 10px 0;
+        }
+
+        .ticket-details span {
+            font-weight: bold;
+        }
+
+        .cancel-button {
+            background-color: #FF6633;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 150px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cancel-button:hover {
+            background-color: #E65C29;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    <div class="header-title">View Booked Tickets</div>
+    <i class="fas fa-user-circle profile-icon"></i>
+</header>
+
+<main>
+    <div class="ticket-card">
+        <h3>Ticket #1: Delhi to Mumbai</h3>
+        <div class="ticket-details">
+            <p><span>From:</span> Delhi</p>
+            <p><span>To:</span> Mumbai</p>
+            <p><span>Date:</span> 2025-02-10</p>
+            <p><span>Class:</span> Business</p>
+            <p><span>Status:</span> Booked</p>
+        </div>
+        <button class="cancel-button">Cancel Ticket</button>
+    </div>
+
+    <div class="ticket-card">
+        <h3>Ticket #2: Bangalore to Chennai</h3>
+        <div class="ticket-details">
+            <p><span>From:</span> Bangalore</p>
+            <p><span>To:</span> Chennai</p>
+            <p><span>Date:</span> 2025-02-12</p>
+            <p><span>Class:</span> Economy</p>
+            <p><span>Status:</span> Booked</p>
+        </div>
+        <button class="cancel-button">Cancel Ticket</button>
+    </div>
+
+    <!-- You can add more tickets here -->
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p>Contact: hulle.ganesh@tcs.com</p>
+    </div>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>

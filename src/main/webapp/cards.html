@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #FF6633;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .header-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .profile-icon {
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+        }
+        .temp-icon {
+            cursor: pointer;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        main {
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            background-color: #FF6633;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .card-details {
+            text-align: left;
+            padding: 15px;
+            font-size: 14px;
+            color: #555;
+            border-top: 1px solid #eee;
+        }
+
+        .book-ticket-button {
+            padding: 12px 20px;
+            background-color: #FF6633;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 15px;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .book-ticket-button:hover {
+            background-color: #E65C29;
+        }
+
+        footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .contact-info {
+        margin: 0;
+        font-size: 14px;
+        color: #aaa;
+        text-align: left;
+    }
+
+    .contact-info a {
+        color: #f7a800;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+        color: #fff;
+    }
+
+    .view-tickets-button {
+        background-color: #FF6633;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 8px 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-size: 16px;
+    }
+
+    .view-tickets-button:hover {
+        background-color: #E65C29;
+        transform: translateY(-3px);
+    }
+
+    .view-tickets-button:active {
+        transform: translateY(1px);
+    }
+
+    @media (max-width: 768px) {
+     header {
+         padding: 15px 25px;
+     }
+
+     .header-title {
+         font-size: 1.5em;
+     }
+
+     footer {
+         padding: 15px;
+     }
+
+     .footer-content {
+         flex-direction: column;
+         align-items: flex-start;
+     }
+
+     .contact-info {
+         font-size: 12px;
+         text-align: left;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .header-title {
+         font-size: 1.3em;
+     }
+
+     .back-button, .profile-icon {
+         font-size: 22px;
+     }
+
+     footer {
+         flex-direction: column;
+         align-items: center;
+     }
+
+     .footer-content {
+         padding: 0;
+         text-align: center;
+     }
+
+     .view-tickets-button {
+         width: 100%;
+         margin-top: 10px;
+     }
+ }
+
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-button" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <i class="fas fa-train temp-icon"></i>
+        <div class="header-title">E Yatra: Train Ticket System</div>
+        <i class="fas fa-user-circle profile-icon"></i>
+    </header>
+
+    <main id="cardContainer">
+        <!-- Cards will be dynamically inserted here -->
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="contact-info">Contact: hulle.ganesh@tcs.com</p>
+            <form action="tickets.html">
+            <button class="view-tickets-button">View Booked Tickets</button>
+          </form>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardContainer = document.getElementById('cardContainer');
+            const trainNames = ["Rajdhani Express", "Shatabdi Express", "Duronto Express", "Garib Rath", "Jan Shatabdi", "Sampark Kranti", "Humsafar Express", "Tejas Express", "Vande Bharat"];
+            for (let i = 0; i < 9; i++) {
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                const cardContent = document.createElement('div');
+                cardContent.classList.add("card-content");
+
+                const title = document.createElement('div');
+                title.classList.add('card-title');
+                title.textContent = trainNames[i];
+
+                const trainNumber = document.createElement('div');
+                trainNumber.classList.add('card-details');
+                trainNumber.textContent = 'Train No: ' + Math.floor(100000 + Math.random() * 900000);
+
+                const departureTime = document.createElement('div');
+                departureTime.classList.add('card-details');
+                departureTime.textContent = 'Departure: ' + getRandomTime();
+
+                const arrivalTime = document.createElement('div');
+                arrivalTime.classList.add('card-details');
+                arrivalTime.textContent = 'Arrival: ' + getRandomTime();
+
+                const bookButton = document.createElement('button');
+                bookButton.textContent = 'Book Ticket';
+                bookButton.classList.add('book-ticket-button');
+
+                cardContent.appendChild(title);
+                cardContent.appendChild(trainNumber);
+                cardContent.appendChild(departureTime);
+                cardContent.appendChild(arrivalTime);
+                card.appendChild(cardContent);
+                card.appendChild(bookButton);
+                cardContainer.appendChild(card);
+            }
+        });
+
+        function getRandomTime() {
+            const hours = Math.floor(Math.random() * 24).toString().padStart(2, '0');
+            const minutes = Math.floor(Math.random() * 60).toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+ name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ILPTS</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgba(255, 102, 51, 0.05);
+            color: #333;
+        }
+
+        header {
+            background-color: #FF6633;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .header-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .profile-icon {
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .temp-icon {
+            cursor: pointer;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+
+        main {
+            padding: 20px;
+            margin-bottom: 100px;
+        }
+
+
+        main p {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        footer {
+                background-color: #333;
+                color: #fff;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 1200px;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .contact-info {
+                margin: 0;
+                font-size: 14px;
+                color: #aaa;
+                text-align: left;
+            }
+
+            .contact-info a {
+                color: #f7a800;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .contact-info a:hover {
+                color: #fff;
+            }
+
+            .view-tickets-button {
+                background-color: #FF6633;
+                color: white;
+                border: none;
+                border-radius: 12px;
+                padding: 8px 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                font-size: 16px;
+            }
+
+            .view-tickets-button:hover {
+                background-color: #E65C29;
+                transform: translateY(-3px);
+            }
+
+            .view-tickets-button:active {
+                transform: translateY(1px);
+            }
+  .train-booking-section {
+    width: 100%;
+    height: 600px;
+    border-radius: 12px;
+    background-image: url('Assets/nextPageVande.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+
+  .booking-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 5%; /* Adjust the offset to the left */
+    transform: translateY(-50%);
+  }
+    .booking-container h2{
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .booking-form {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 100px;
+        margin: 5px;
+    }
+    .search-button {
+    background-color: rgba(255, 102, 51, 1); ;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100px;
+    height: 39px;
+
+
+}
+    input, select {
+      width: 150px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+    }
+
+    @media (max-width: 768px) {
+           header {
+               padding: 15px 25px;
+           }
+
+           .header-title {
+               font-size: 1.5em;
+           }
+
+           footer {
+               padding: 15px;
+           }
+
+           .footer-content {
+               flex-direction: column;
+               align-items: flex-start;
+           }
+
+           .contact-info {
+               font-size: 12px;
+               text-align: left;
+           }
+       }
+
+       @media (max-width: 480px) {
+           .header-title {
+               font-size: 1.3em;
+           }
+
+           .back-button, .profile-icon {
+               font-size: 22px;
+           }
+
+           footer {
+               flex-direction: column;
+               align-items: center;
+           }
+
+           .footer-content {
+               padding: 0;
+               text-align: center;
+           }
+
+           .view-tickets-button {
+               width: 100%;
+               margin-top: 10px;
+           }
+       }
+</style>
+
+</head>
+  <body>
+<header>
+<button class="back-button" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+      </button>
+
+    </button>
+    <i class="fas fa-train temp-icon"></i>
+    <div class="header-title">E Yatra: Train Ticket System</div>
+    <i class="fas fa-user-circle profile-icon"></i>
+</header>
+
+<main>
+    <section class="train-booking-section">
+  <div class="booking-container">
+  <h2>Search for train</h2>
+    <div class="booking-form">
+      <div class="form-group">
+        <label for="from">From</label>
+        <input type="text" id="from" name="from" placeholder="City or Station">
+      </div>
+      <div class="form-group">
+        <label for="to">To</label>
+        <input type="text" id="to" name="to" placeholder="City or Station">
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" >
+      </div>
+      <div class="form-group">
+        <label for="class">Class</label>
+        <select id="class" name="class">
+          <option value="general">General</option>
+          <option value="first">First Tier A/C</option>
+          <option value="second">Second Tier A/C</option>
+          <option value="third">Third Tier A/C</option>
+          <option value="sleeper">Sleeper Class</option>
+          <option value="sitting">Second Class Sitting</option>
+
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="class">&nbsp; </label>
+       <form action="cards.html">
+            <button type="submit" class="search-button">Search</button>
+       </form>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p class="contact-info">Contact: hulle.ganesh@tcs.com</p>
+    <form action="tickets.html">
+    <button class="view-tickets-button">View Booked Tickets</button>
+  </form>
+
+  </div>
+</footer>
+<script src="index.js"></script>
+</body>
+</html>

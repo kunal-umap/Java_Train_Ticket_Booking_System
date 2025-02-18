@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login ^\s*$\n</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            background-image: url('Assets/homeVande.jpg'); 
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1; 
+        }
+        .container {
+            width: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            width: 360px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #ff6633;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #000000;
+        }
+        .toggle-btn {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #003399;
+            cursor: pointer;
+        }
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #ff6633;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .password-container {
+             position: relative;
+             width: 100%;
+        }
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="form-container">
+            <div id="login-form" class="form-section active">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="toggle-btn" onclick="toggleForm('register')">Don't have an account?   Register</div>
+            </div>
+            <div id="register-form" class="form-section ">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <input type="text" id="userName" placeholder="User Name*" required>
+                    <div class="password-container">
+                        <input type="password" id="registerPassword" placeholder="Password*" required>
+                        <span id="togglePassword" class="eye-icon">&#128065;</span> 
+                    </div>
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirm Password*" required>
+                    <input type="email" id="registerEmail" placeholder="Email*" required>
+                    <input type="number" id="registerPhone" placeholder="Phone Number*" required> 
+                    <input type="number" id="registerAadhar" placeholder="Aadhar Number*" required>
+                    <button type="submit">Register</button>
+                </form>
+                <div class="toggle-btn" onclick="toggleForm('login')">Already have an account? Login</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('userName').addEventListener('input', function() {
+                const userName = this.value;
+                const pattern = /^[A-Za-z]{6,}$/;  
+                if (!pattern.test(userName)) {
+                    this.setCustomValidity("User name must be at least 6 letters and contain no numbers or symbols.");
+                } else {
+                    this.setCustomValidity(""); 
+                }
+            });
+        document.getElementById('registerPhone').addEventListener('input', function() {
+                const registerPhone = this.value;
+                const pattern = /^\d{10}$/;  
+                if (!pattern.test(registerPhone)) {
+                    this.setCustomValidity("Please enter a valid 10-digit mobile number.");
+                } else {
+                    this.setCustomValidity(""); 
+                }
+            });
+        document.getElementById('registerAadhar').addEventListener('input', function() {
+                const registerAadhar = this.value;
+                const pattern = /^\d{12}$/;  
+                if (!pattern.test(registerAadhar)) {
+                    this.setCustomValidity("Please enter a valid 12-digit Aadhar number.");
+                } else {
+                    this.setCustomValidity("");  
+                }
+            });
+    const passwordFields = document.querySelectorAll('#registerPassword, #registerConfirmPassword');
+    passwordFields.forEach(function(passwordField) {
+        passwordField.addEventListener('input', function() {
+            const password = this.value;
+            const minLength = 8;
+            const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+            const numberPattern = /\d/; 
+            const upperCasePattern = /[A-Z]/;
+            let errorMessage = '';
+         
+            if (password.length < minLength) {
+                errorMessage = "Password must be at least 8 characters long.";
+            }
+           
+            else if (!specialCharPattern.test(password)) {
+                errorMessage = "Password must contain at least one special character.";
+            }
+            else if (!numberPattern.test(password)) {
+                errorMessage = "Password must contain at least one number.";
+            }
+            else if (!upperCasePattern.test(password)) {
+                errorMessage = "Password must contain at least one uppercase letter.";
+            }
+            this.setCustomValidity(errorMessage);
+        });
+    });
+    const passwordInput = document.getElementById('registerPassword');
+    const togglePasswordIcon = document.getElementById('togglePassword');
+    togglePasswordIcon.addEventListener('click', function() {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        if (type === 'password') {
+            togglePasswordIcon.innerHTML = '&#128065;'; 
+        } else {
+            togglePasswordIcon.innerHTML = '&#128586;'; 
+        }
+    });
+        function toggleForm(formType) {
+            if (formType === 'register') {
+                document.getElementById('login-form').classList.remove('active');
+                document.getElementById('register-form').classList.add('active');
+            } else if (formType === 'login') {
+                document.getElementById('register-form').classList.remove('active');
+                document.getElementById('login-form').classList.add('active');
+            }
+        }
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            alert('Login successful for ' + email);
+            window.location.href = 'home.html';
+        });
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const phone = document.getElementById('registerPhone').value;
+            const aadhar = document.getElementById('registerAadhar').value;
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }else{
+                window.location.href = 'home.html';
+            }
+            alert('Registration successful for ' + name);
+        });
+    </script>
+</body>
+</html>

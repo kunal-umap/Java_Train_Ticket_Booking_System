@@ -1,0 +1,26 @@
+CREATE TABLE users (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    age INT CHECK (age >= 0),
+    gender CHAR(1) CHECK (gender IN ('M', 'F', 'O')), -- 'M' for Male, 'F' for Female, 'O' for Other
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL,
+    type VARCHAR(20) NOT NULL, -- e.g., 'admin', 'user', etc.
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL -- Store hashed passwords, not plain text!
+);
+
+
+CREATE TABLE users (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    age INT CHECK (age >= 0),
+    gender VARCHAR(50), -- 'M' for Male, 'F' for Female, 'O' for Other
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP ,
+    type VARCHAR(20) , -- e.g., 'admin', 'user', etc.
+    email VARCHAR(100) UNIQUE ,
+    password VARCHAR(255)   -- Store hashed passwords, not plain text!
+);

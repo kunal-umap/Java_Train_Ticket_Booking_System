@@ -1,3 +1,51 @@
+<%@ page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.*, java.security.*, java.math.*, javax.servlet.http.*, javax.servlet.*, java.util.*" %>
+
+<%
+   	ArrayList<String> start = new ArrayList<>();
+	ArrayList<String> end = new ArrayList<>();
+
+    // Database connection details
+    String dbURL = "jdbc:derby:C:\\Users\\Dell\\MyDB;create=true"; 
+
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    PreparedStatement stmt1 = null;
+
+    try {
+        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+        conn = DriverManager.getConnection(dbURL);
+        
+        String query = "SELECT start_station FROM trains";
+        String query1 = "SELECT end_station FROM trains";
+        
+        stmt = conn.prepareStatement(query);
+        stmt1 = conn.prepareStatement(query1);
+        
+        ResultSet rs1 = stmt.executeQuery();
+        ResultSet rs2 = stmt1.executeQuery();
+        
+        while(rs1.next()){
+        	start.add(rs1.getString("start_station"));
+        }
+        
+        while(rs2.next()){
+        	end.add(rs2.getString("end_station"));
+        }
+        
+
+        
+        if (rs1 != null) rs1.close();
+        if (rs2 != null) rs2.close();
+    } catch (Exception e) {
+        System.out.print( "Error: " + e.getMessage());
+    } finally {
+        
+        if (stmt != null) stmt.close();
+        if (conn != null) conn.close();
+    }
+%>
+
 <!doctype html>
 <html lang="en">
 
@@ -40,14 +88,28 @@
           <p>From</p>
           <!-- <input value="Delhi" > -->
           <select value="Delhi" name="" id="input_box" class="input_box">
-            <option value="Delhi">Delhi</option>
+          <%
+		        for(String city : start) {
+		    %>
+		        <option value="<%= city %>"><%= city %></option>
+		    <%
+		        }
+		    %>
+            
           </select>
           <p>NDLS, New Delhi Railway Station</p>
         </div>
         <div class="to field-inp">
           <p>To</p>
           <select value="Delhi" name="" id="input_box" class="input_box">
-            <option value="Delhi">Mumbai</option>
+            <<%
+		        for(String city : end) {
+		    %>
+		        <option value="<%= city %>"><%= city %></option>
+		    <%
+		        }
+		    %>
+		    <option value="Delhi">Delhi</option>
           </select>
           <p>CSMT, Mumbai Railway Station</p>
         </div>

@@ -24,3 +24,21 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE ,
     password VARCHAR(255)   -- Store hashed passwords, not plain text!
 );
+
+
+CREATE TABLE trains (
+	train_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	train_name VARCHAR(50) NOT NULL,
+	start_station VARCHAR(50) NOT NULL,
+	end_station VARCHAR(50) NOT NULL,
+	start_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	end_at TIMESTAMP
+)
+
+INSERT INTO trains (train_name, start_station, end_station, start_at, end_at)  
+VALUES  
+    ('Express 101', 'Delhi', 'Mumbai', '2025-03-01 06:00:00', '2025-03-01 18:00:00'),  
+    ('Superfast 202', 'Kolkata', 'Chennai', '2025-03-02 08:30:00', '2025-03-02 22:45:00'),  
+    ('Intercity 303', 'Bangalore', 'Hyderabad', '2025-03-03 07:15:00', '2025-03-03 14:30:00'),  
+    ('Rajdhani 404', 'Mumbai', 'Delhi', '2025-03-04 17:00:00', '2025-03-05 06:00:00'),  
+    ('Shatabdi 505', 'Chennai', 'Bangalore', '2025-03-05 05:45:00', '2025-03-05 10:00:00');  

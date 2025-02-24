@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*, java.security.*, java.math.*, javax.servlet.http.*, javax.servlet.*" %>
 <%
     String message = "";
+	String color = "";
 
     // Database connection details
     String dbURL = "jdbc:derby:C:\\Users\\Dell\\MyDB;create=true"; 
@@ -37,6 +38,7 @@
                 return;
             } else {
                 message = "Invalid email or password!";
+                color = "red";
             }
         }
 
@@ -55,6 +57,7 @@
 
             if (!password.equals(confirmPassword)) {
                 message = "Passwords do not match!";
+                color = "red";
             } else {
                 // Hash password
                 MessageDigest md = MessageDigest.getInstance("MD5");
@@ -74,8 +77,10 @@
                 int rows = stmt.executeUpdate();
                 if (rows > 0) {
                     message = "Registration successful! You can now log in.";
+                    color = "green";
                 } else {
                     message = "Registration failed. Please try again.";
+                    color = "red";
                 }
             }
         }
@@ -100,12 +105,13 @@
 <body>
     <div class="overlay"></div>
     <div class="container">
-        <% if (!message.isEmpty()) { %>
-            <div class="message"><%= message %></div>
-        <% } %>
+        
         <div class="form-container">
             <div id="login-form" class="form-section active">
                 <h2>Login</h2>
+                <% if (!message.isEmpty()) { %>
+		            <div class="message" style="color: <%=color%>"><%= message %></div>
+		        <% } %>
                 <form action="index.jsp" method="post">
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" required>

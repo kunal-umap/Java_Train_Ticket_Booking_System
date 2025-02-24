@@ -1,9 +1,9 @@
-﻿<%@ page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.*, java.security.*, java.math.*, javax.servlet.http.*, javax.servlet.*" %>
+<%@ page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.*, java.text.SimpleDateFormat, java.util.Date" %>
 <%
     String message = "";
     String color = "";
-    String dbURL = "jdbc:derby:C:\Users\hulle\MyDB;create=true";
+    String dbURL = "jdbc:derby:C:\\Users\\hulle\\MyDB;create=true";
 
     Connection conn = null;
     PreparedStatement stmt = null;
@@ -16,12 +16,20 @@
             String trainName = request.getParameter("trainName");
             String startStation = request.getParameter("startStation");
             String endStation = request.getParameter("endStation");
+            String startAt = request.getParameter("startAt");
+            String endAt = request.getParameter("endAt");
 
-            String sql = "INSERT INTO trains (train_name, start_station, end_station) VALUES (?, ?, ?)";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            Timestamp startTime = new Timestamp(sdf.parse(startAt).getTime());
+            Timestamp endTime = new Timestamp(sdf.parse(endAt).getTime());
+
+            String sql = "INSERT INTO trains (train_name, start_station, end_station, start_at, end_at) VALUES (?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, trainName);
             stmt.setString(2, startStation);
             stmt.setString(3, endStation);
+            stmt.setTimestamp(4, startTime);
+            stmt.setTimestamp(5, endTime);
             
             int rows = stmt.executeUpdate();
             if (rows > 0) {
@@ -81,6 +89,12 @@
 
         <label for="to">To:</label>
         <input type="text" name="endStation" required>
+
+        <label for="startAt">Start Date & Time:</label>
+        <input type="datetime-local" name="startAt" required>
+
+        <label for="endAt">End Date & Time:</label>
+        <input type="datetime-local" name="endAt" required>
 
         <button type="submit">Register Train</button>
       </form>

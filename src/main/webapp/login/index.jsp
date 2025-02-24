@@ -4,7 +4,7 @@
     String message = "";
 
     // Database connection details
-    String dbURL = "jdbc:derby:C:\\Users\\hulle\\MyDB;create=true"; 
+    String dbURL = "jdbc:derby:C:\\Users\\Dell\\MyDB;create=true"; 
 
     Connection conn = null;
     PreparedStatement stmt = null;

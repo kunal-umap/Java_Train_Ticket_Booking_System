@@ -1,9 +1,10 @@
 <%@ page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*, java.text.SimpleDateFormat, java.util.Date" %>
+
 <%
     String message = "";
     String color = "";
-    String dbURL = "jdbc:derby:C:\\Users\\hulle\\MyDB;create=true";
+    String dbURL = "jdbc:derby:C:\\Users\\Dell\\MyDB;create=true";
 
     Connection conn = null;
     PreparedStatement stmt = null;

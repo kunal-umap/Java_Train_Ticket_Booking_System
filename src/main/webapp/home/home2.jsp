@@ -76,7 +76,7 @@
   </nav>
   <section id="main-hero">
 
-    <form class="bokingSpace" action="#">
+    <form class="bokingSpace" action="../availableTrains/cards.jsp" method="get">
       <div class="options">
         <input  checked="checked" class="radio"  type="radio" id="book" name="opt">
         <label class="option_bp select" for="book" >Book Train</label> 
@@ -87,7 +87,7 @@
         <div class="from field-inp">
           <p>From</p>
           <!-- <input value="Delhi" > -->
-          <select value="Delhi" name="" id="input_box" class="input_box">
+          <select value="Delhi" name="start_station" id="input_box" class="input_box">
           <%
 		        for(String city : start) {
 		    %>
@@ -101,7 +101,7 @@
         </div>
         <div class="to field-inp">
           <p>To</p>
-          <select value="Delhi" name="" id="input_box" class="input_box">
+          <select value="Delhi" name="end_station" id="input_box" class="input_box">
             <<%
 		        for(String city : end) {
 		    %>
@@ -124,7 +124,7 @@
         </div>
         <div class="class field-inp">
           <p>Class</p>
-          <select value="Delhi" name="" id="input_box" class="input_box">
+          <select value="Delhi" name="class" id="input_box" class="input_box">
             <option value="Delhi">All</option>
           </select>
           <p>All Class</p>
@@ -132,7 +132,7 @@
         </div>
       </div>
 
-      <a href="../availableTrains/cards.html" class="searchBtn"> Search </a> 
+      <input type="submit"  class="searchBtn"> Search </a> 
     </form>
 
   </section>

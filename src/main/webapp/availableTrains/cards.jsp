@@ -1,3 +1,7 @@
+<%@ page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.*, java.security.*, java.math.*, javax.servlet.http.*, javax.servlet.*, java.util.*" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +23,77 @@
 
     <main id="cardContainer">
         <!-- Cards will be dynamically inserted here -->
+        <%
+    // Get parameters from the request
+		    String startStation = request.getParameter("start_station");
+		    String endStation = request.getParameter("end_station");
+
+	    if (startStation != null && endStation != null) {
+	        // Database connection details
+	        String url = "jdbc:derby:C:\\Users\\Dell\\MyDB;create=true"; // Replace with your database name
+	        
+	
+	        Connection conn = null;
+	        PreparedStatement stmt = null;
+	        ResultSet rs = null;
+
+        try {
+            // Load JDBC driver
+           	Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+        	conn = DriverManager.getConnection(url);
+
+            // SQL query to fetch matching trains
+            String sql = "SELECT train_id, train_name, start_at, end_at FROM trains WHERE start_station = ? AND end_station = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, startStation);
+            stmt.setString(2, endStation);
+
+            rs = stmt.executeQuery();
+
+            boolean hasResults = false; // Flag to check if any rows are returned
+
+            // Loop through results and display
+%>
+            <h2>Available Trains from <%= startStation %> to <%= endStation %>:</h2>
+            <table border="1">
+                <tr>
+                    <th>Train ID</th>
+                    <th>Train Name</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+<%
+            while (rs.next()) {
+                hasResults = true; // We have at least one train
+%>
+                <tr>
+                    <td><%= rs.getInt("train_id") %></td>
+                    <td><%= rs.getString("train_name") %></td>
+                    <td><%= rs.getTimestamp("start_at") %></td>
+                    <td><%= rs.getTimestamp("end_at") %></td>
+                </tr>
+<%
+            }
+
+            if (!hasResults) { 
+                out.println("<h3>No trains found for this route.</h3>");
+            }
+%>
+            </table>
+<%
+        } catch (Exception e) {
+            out.println("<p>Error: " + e.getMessage() + "</p>");
+        } finally {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        }
+    } else {
+        out.println("<p>Please enter both start and end stations.</p>");
+    }
+%>
+        
+        
     </main>
 
     <script>

@@ -19,7 +19,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    color: var(--white);
+    color: var(--black);
     position: relative;
 }
 
@@ -69,6 +69,8 @@ main {
     z-index: 2;
 }
 
+
+/*
 .card {
     background-color: var(--gray);
     border-radius: 12px;
@@ -154,4 +156,126 @@ footer {
     main {
         grid-template-columns: repeat(1, 1fr);
     }
+}
+*/
+
+
+
+
+
+
+
+
+.card {
+    position: relative;
+    background: white;
+    box-shadow: 0px 0px 8px rgba(128, 128, 128, 0.655);
+    border-radius: 12px;
+    padding: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.tag {
+    background: green;
+    position: absolute;
+    border-bottom-right-radius: 12px;
+    padding: 4px 12px;
+    top: 0px;
+    left: 0px;
+}
+
+.card_header {
+    margin-top: 24px;
+    display: flex;
+    align-items: center; 
+
+}
+.card_header img {
+    border-radius: 40%;
+    margin-right: 4px;
+    height: 32px;
+    aspect-ratio: 1/1;
+}
+
+.card_header p {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.card_header span {
+    flex: 1;
+    text-align: right;
+}
+
+.journey {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: .4px solid rgba(128, 128, 128, 0.555);
+}
+/*
+.from_loc, .to_loc {
+    flex: 1;
+}
+*/
+.arrow {
+   /* flex: .4; */
+    text-align: center;
+}
+
+.from_loc .place,
+.to_loc .place{
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.from_loc .time,
+.to_loc .time{
+    font-size: 13px;
+    font-weight: 600;
+    color: black;
+    opacity: .95;
+}
+
+.from_loc .date,
+.to_loc .date{
+    font-size: 13px;
+    font-weight: 500;
+    color: grey;
+    border: none;
+}
+
+.btns {
+    padding: 12px 8px 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.cancelbtn {
+    padding: 8px;
+    text-align: center;
+    width: 160px;
+    border-radius: 12px;
+    margin: 0px 12px;
+    font-weight: 800;
+    color: var(--mainColor);
+    border: 2px solid var(--mainColor);
+    cursor: pointer;
+}
+
+.viewbtn {
+    text-align: center;
+    width: 160px;
+    padding: 8px;
+    text-decoration: none;
+    background: var(--primaryColor);
+    border-radius: 12px;
+    margin: 0px 12px;
+    font-weight: 800;
+    color: #FFF;
+    border: 2px solid var(--primaryColor);
+    cursor: pointer;
 }

@@ -20,7 +20,7 @@
         <div class="header-title">E Yatra: Train Ticket System</div>
         <i class="fas fa-user-circle profile-icon"></i>
     </header>
-
+ 	
     <main id="cardContainer">
         <!-- Cards will be dynamically inserted here -->
         <%
@@ -30,7 +30,7 @@
 
 	    if (startStation != null && endStation != null) {
 	        // Database connection details
-	        String url = "jdbc:derby:C:\\Users\\Dell\\MyDB;create=true"; // Replace with your database name
+	        String url = "jdbc:derby:D:\\Users\\2792618\\MyDB;create=true"; // Replace with your database name
 	        
 	
 	        Connection conn = null;
@@ -54,24 +54,43 @@
 
             // Loop through results and display
 %>
-            <h2>Available Trains from <%= startStation %> to <%= endStation %>:</h2>
-            <table border="1">
-                <tr>
-                    <th>Train ID</th>
-                    <th>Train Name</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                </tr>
+           
+            
 <%
             while (rs.next()) {
                 hasResults = true; // We have at least one train
-%>
-                <tr>
-                    <td><%= rs.getInt("train_id") %></td>
-                    <td><%= rs.getString("train_name") %></td>
-                    <td><%= rs.getTimestamp("start_at") %></td>
-                    <td><%= rs.getTimestamp("end_at") %></td>
-                </tr>
+%>				<div class="card_box">
+                
+                <div class="card">
+                  <span class="tag">
+                    <%= rs.getInt("train_id") %>
+                  </span>
+                  <div class="card_header">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.K0hNUKtpph8FcAsgqWONtwHaHa?rs=1&pid=ImgDetMain" alt="T" class="train-logo">
+                    <p><%= rs.getString("train_name") %></p>
+                    <span>3</span>
+                  </div>
+                  <div class="journey">
+                    <div class="from_loc">
+                        <p class="place"><%= startStation %></p>
+                        <p class="time"><%= rs.getTimestamp("start_at") %></p>
+                    </div>
+                    <div class="arrow">
+                        ->
+                    </div>
+                    <div class="to_loc">
+                        <p class="place"><%= endStation %></p>
+                        <p class="time"><%= rs.getTimestamp("end_at") %></p>
+                    </div>
+
+                  </div>
+                  <div class="btns">
+                    <a class="cancelbtn"></a>
+                    <a href="../finalTicket/index.html" class="viewbtn">Book Ticket</a>
+                  </div>
+                </div>
+                </div>
+
 <%
             }
 
@@ -79,7 +98,7 @@
                 out.println("<h3>No trains found for this route.</h3>");
             }
 %>
-            </table>
+    
 <%
         } catch (Exception e) {
             out.println("<p>Error: " + e.getMessage() + "</p>");
@@ -96,60 +115,5 @@
         
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cardContainer = document.getElementById('cardContainer');
-            const trainNames = ["Rajdhani Express", "Shatabdi Express", "Duronto Express", "Garib Rath", "Jan Shatabdi", "Sampark Kranti", "Humsafar Express", "Tejas Express", "Vande Bharat"];
-            for (let i = 0; i < 9; i++) {
-                const card = document.createElement('div');
-                card.classList.add('card');
-
-                const cardContent = document.createElement('div');
-                cardContent.classList.add("card-content");
-
-                const title = document.createElement('div');
-                title.classList.add('card-title');
-                title.textContent = trainNames[i];
-
-                const trainNumber = document.createElement('div');
-                trainNumber.classList.add('card-details');
-                trainNumber.textContent = 'Train No: ' + Math.floor(100000 + Math.random() * 900000);
-
-                const departureTime = document.createElement('div');
-                departureTime.classList.add('card-details');
-                departureTime.textContent = 'Departure: ' + getRandomTime();
-
-                const arrivalTime = document.createElement('div');
-                arrivalTime.classList.add('card-details');
-                arrivalTime.textContent = 'Arrival: ' + getRandomTime();
-
-                const bookButton = document.createElement('button');
-                bookButton.textContent = 'Book Ticket';
-                bookButton.classList.add('book-ticket-button');
-
-                // Add click event
-                bookButton.addEventListener('click', function () {
-                	window.location.href = '../bookedTickets/tickets.html';
-                    alert('Ticket booked successfully!');
-                    // You can replace this with your actual booking logic
-                });
-
- 
-                cardContent.appendChild(title);
-                cardContent.appendChild(trainNumber);
-                cardContent.appendChild(departureTime);
-                cardContent.appendChild(arrivalTime);
-                card.appendChild(cardContent);
-                card.appendChild(bookButton);
-                cardContainer.appendChild(card);
-            }
-        });
-
-        function getRandomTime() {
-            const hours = Math.floor(Math.random() * 24).toString().padStart(2, '0');
-            const minutes = Math.floor(Math.random() * 60).toString().padStart(2, '0');
-            return `${hours}:${minutes}`;
-        }
-    </script>
 </body>
 </html>

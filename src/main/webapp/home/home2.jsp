@@ -6,7 +6,7 @@
 	ArrayList<String> end = new ArrayList<>();
 
     // Database connection details
-    String dbURL = "jdbc:derby:C:\\Users\\Dell\\MyDB;create=true"; 
+    String dbURL = "jdbc:derby:D:\\Users\\2792618\\MyDB;create=true"; 
 
     Connection conn = null;
     PreparedStatement stmt = null;
